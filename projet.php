@@ -68,6 +68,41 @@
                    ?>
 
 
+                </div>  
+
+                <div class="col-6">
+                    <form method="GET">
+                        <input type="number" placeholder="Id" name="Id">
+                       
+                        <button type="submit" name="action">supprimer</button>
+                    </form>
+                        <?php
+
+                             
+                            if(isset($_GET['action'])  && !empty($_GET['Id'])){
+                                
+
+                                   $supprimer = $pdo->prepare('DELETE FROM livre WHERE Id_Livre =:Id');
+                                   $supprimer->bindParam(':Id', $_GET['Id'], 
+                                   PDO::PARAM_STR);
+                                   
+
+
+                                  $supprimer = $supprimer->execute();
+                                  if($supprimer){
+                                       echo 'votre enregistrement a bien été supprimé';
+            
+        
+                                    } else {
+                                         echo 'Veuillez recommencer svp, une erreur est survenue';
+                                        }
+                            }
+       
+                        ?>
+
+
+
+
 
                 </div>
 

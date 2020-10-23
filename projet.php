@@ -143,30 +143,23 @@
                         ?>
 
                 </div>
-             <div class="col-4">
+
                 <?php 
                    $recuperation = $pdo->query('SELECT * FROM Livre');
                    while ($livre = $recuperation->fetch()) {
                     echo "<form><div> <input type='text' name='id' value='".$livre['Id_Livre']."'>
                    <input type='text' name='auteurdulivre' value='".$livre['auteur_Livre']."'>
-            
+                   
     
                       </form>
     
                       </div>";
     
-    
+   
   
                         }
 
-
-
-                ?>
-
-
-
-                </div>
-
+                     ?>
 
 
             </div>

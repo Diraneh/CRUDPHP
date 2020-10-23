@@ -35,7 +35,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
 
-                <div class="col-6">
+                <div class="col-4">
                     <form method="GET">
                         <input type="text" placeholder="Id_livre" name="Id_Livre">
                         <input type="text" placeholder="auteur_Livre" name="auteur_Livre">
@@ -70,20 +70,20 @@
 
                 </div>  
 
-                <div class="col-6">
+                <div class="col-4">
                     <form method="GET">
-                        <input type="number" placeholder="Id" name="Id">
+                        <input type="number" placeholder="Idd" name="Idd">
                        
                         <button type="submit" name="action">supprimer</button>
                     </form>
                         <?php
 
                              
-                            if(isset($_GET['action'])  && !empty($_GET['Id'])){
+                            if(isset($_GET['action'])  && !empty($_GET['Idd'])){
                                 
 
-                                   $supprimer = $pdo->prepare('DELETE FROM livre WHERE Id_Livre =:Id');
-                                   $supprimer->bindParam(':Id', $_GET['Id'], 
+                                   $supprimer = $pdo->prepare('DELETE FROM livre WHERE Id_Livre =:Idd');
+                                   $supprimer->bindParam(':Idd', $_GET['Idd'], 
                                    PDO::PARAM_STR);
                                    
 
@@ -105,6 +105,51 @@
 
 
                 </div>
+
+
+                <div class="col-4">
+                    <form method="GET">
+                        <input type="number" placeholder="Id" name="Id">
+                        <input type="text" placeholder="auteur" name="auteur">
+                       
+                        <button type="submit" name="action">modifier</button>
+                    </form>
+                        <?php
+
+                             
+                            if(isset($_GET['action'])  && !empty($_GET['auteur'] ) && !empty($_GET['Id'])){
+                                
+                             
+
+                                   $modifier = $pdo->prepare('UPDATE livre SET auteur_Livre=:auteur WHERE Id_Livre=:Id');
+                                   $modifier->bindParam(':auteur', $_GET['auteur'], 
+                                   PDO::PARAM_STR);
+
+                                   $modifier->bindParam(':Id', $_GET['Id'], 
+                                   PDO::PARAM_STR);
+                                   
+
+
+                                  $modifier = $modifier->execute();
+                                  if($modifier){
+                                       echo 'Votre modification a été bien enregistre';
+            
+        
+                                    } else {
+                                         echo 'Veuillez recommencer svp, une erreur est survenue';
+                                        }
+                            }
+       
+                        ?>
+
+
+
+
+
+                </div>
+
+
+
 
             </div>
 
